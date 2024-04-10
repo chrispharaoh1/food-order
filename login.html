@@ -3,14 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
+  <title>Login</title>
   <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
   <style>
-    /* Adjust the width of the captcha input */
-    #captcha {
-      width: 80px; /* Adjust as needed */
-    }
+  /* Register form */
+  /* Adjust the width of the captcha input */
+  #captcha {
+    width: 80%; /* Adjust as needed */
+  }
+  #captcha-image{
+    border: 2px solid #555;
+    height: 40%;
+    background-image: url(img/captcha/backg.jpeg);
+    margin-top: 25px;
+  }
+  .btn{
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    
+  }
   </style>
 </head>
 <body>
@@ -33,9 +48,15 @@
               <input type="password" class="form-control" id="password" placeholder="Password">
             </div>
             <div class="form-group">
-              <label for="captcha">Captcha</label>
-              <input type="text" class="form-control" id="captcha" placeholder="Enter captcha code">
-              <img id="captcha-image" src="" alt="Captcha Image" class="img-fluid ml-2">
+              <div class="row">
+                <div class="col-6">
+                  <label for="captcha">Captcha</label>
+                  <input type="text" class="form-control" id="captcha" placeholder="Enter captcha code">
+                </div>
+                 <div class="col-6">
+                  <img id="captcha-image" src="" alt="Captcha Image" class="img-fluid ml-2">
+                </div>
+              </div>          
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
           </form>
@@ -54,9 +75,9 @@
   document.addEventListener("DOMContentLoaded", function() {
     // Two-dimensional array of captcha image paths and corresponding values
     var captchaImages = [
-      ["img/captcha/rec.jpeg", "AeiR2"],
-      ["img/captcha/rec1.jpeg", "24qU3"],
-      ["img/captcha/rec2.jpeg", "ecb4f"],
+      ["img/captcha/rec.png", "AeiR2"],
+      ["img/captcha/rec1.png", "24qU3"],
+      ["img/captcha/rec2.png", "ecb4f"],
       ["img/captcha/rec3.jpeg", "7pLBj8"]
       
     ];

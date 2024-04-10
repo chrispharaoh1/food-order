@@ -383,7 +383,3 @@
     color: var(--primary);
 }
 
-/* Register form */
-.card-body label{
-    color: red;;
-}
