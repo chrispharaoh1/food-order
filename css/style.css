@@ -382,3 +382,8 @@
 .footer .copyright a:hover {
     color: var(--primary);
 }
+
+/* Register form */
+.card-body label{
+    color: red;;
+}
