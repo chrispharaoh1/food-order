@@ -154,10 +154,10 @@
 
         <div  class="row" style="margin-top: 25px;">
           <!-- Food pictures will be displayed here -->
-            <div class="col" >
-                <div class="d" id="foodPictures"></div>
+            <div class="col-lg-6" >
+                <div class="d" style=" height: 50%; display: block; margin-left: auto; margin-right: auto;" id="foodPictures"></div>
             </div>
-            <div class="col" id="product-info">
+            <div class="col" id="product-info" style="display: none;">
                 <h4>Chicken burger</h4>
                 <hr>
                 <p><span style="font-weight: bold;">Category:</span> Burger, Chicken</p>
@@ -165,6 +165,8 @@
                 <hr>
                 <p><span style="font-weight: bold;">Price:</span> $21</p>
                 <p><span style="font-weight: bold;">Qty:</span></p>
+                <input type="number" name="num" value="1" id="" style="width: 60px;">
+                <input type="button"  value="Add to cart">
             </div>
         </div>
 
@@ -404,11 +406,14 @@
             
             foodTypeSelect.style.display = 'block';
             foodTypeSelect.disabled = false;
+            
+    
           } else {
             // Disable food type select if no category selected
             foodTypeSelect.disabled = true;
             //Remove food type select if no category selected
             foodTypeSelect.style.display = 'none';
+            document.getElementById("product-info").style.display = 'none';
           }
         }
     
@@ -432,6 +437,8 @@
               img.alt = selectedFoodData.name;
               img.className = "col-md-4";
               foodPicturesDiv.appendChild(img);
+              //displaying the product info if the image is displayed
+              document.getElementById("product-info").style.display = 'block';
             }
           }
         }
