@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Adjust the width of the captcha input */
+    #captcha {
+      width: 80px; /* Adjust as needed */
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mt-5">
+        <div class="card-header">
+          Login
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <label for="captcha">Captcha</label>
+              <input type="text" class="form-control" id="captcha" placeholder="Enter captcha code">
+              <img id="captcha-image" src="" alt="Captcha Image" class="img-fluid ml-2">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Two-dimensional array of captcha image paths and corresponding values
+    var captchaImages = [
+      ["img/captcha/rec.jpeg", "AeiR2"],
+      ["img/captcha/rec1.jpeg", "24qU3"],
+      ["img/captcha/rec2.jpeg", "ecb4f"],
+      ["img/captcha/rec3.jpeg", "7pLBj8"]
+      
+    ];
+
+    // Get the captcha image and input elements
+    var captchaImage = document.getElementById("captcha-image");
+    var captchaInput = document.getElementById("captcha");
+
+    // Function to set a random captcha image and its value
+    function setRandomCaptchaImage() {
+      var randomIndex = Math.floor(Math.random() * captchaImages.length);
+      var randomCaptcha = captchaImages[randomIndex];
+      captchaImage.src = randomCaptcha[0]; // Set image source
+      captchaInput.value = ""; // Clear previous input value
+      localStorage.setItem("captchaValue", randomCaptcha[1]); // Store value in localStorage
+    }
+
+    // Initial call to set a random captcha image and value
+    setRandomCaptchaImage();
+
+    // Event listener to change captcha image and value on click
+    captchaImage.addEventListener("click", function() {
+      setRandomCaptchaImage();
+    });
+  });
+</script>
+
+</body>
+</html>

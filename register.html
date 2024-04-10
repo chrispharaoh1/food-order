@@ -75,7 +75,6 @@
 </div>
 <!-- Navbar End -->
 
-
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6">
@@ -101,13 +100,7 @@
               <label for="password">Password</label>
               <input type="password" class="form-control" id="password" placeholder="Password">
             </div>
-            <div class="form-group">
-              <label for="captcha">Captcha</label>
-              <input type="text" class="form-control" id="captcha" placeholder="Enter captcha code">
-              <img id="captcha-image" src="" alt="Captcha Image" class="img-fluid">
-            </div>
-            <div class="form-group">
-              
+  
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
           </form>
@@ -121,30 +114,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Array of captcha image paths
-    var captchaImages = ["img/captcha/rec.jpeg", "img/captcha/rec1.jpeg", "img/captcha/rec2.jpeg", "img/captcha/rec3.jpeg", "img/captcha/rec4.jpeg"];
-
-    // Get the captcha image element
-    var captchaImage = document.getElementById("captcha-image");
-
-    // Function to set a random captcha image
-    function setRandomCaptchaImage() {
-      var randomIndex = Math.floor(Math.random() * captchaImages.length);
-      captchaImage.src = captchaImages[randomIndex];
-    }
-
-    // Initial call to set a random captcha image
-    setRandomCaptchaImage();
-
-    // Event listener to change captcha image on click
-    captchaImage.addEventListener("click", function() {
-      setRandomCaptchaImage();
-    });
-  });
-</script>
 
 </body>
 </html>
