@@ -83,12 +83,12 @@
         <div class="card-body"> 
 
             <div class="form-group">
-              <a href="admin.html"></a><label for="name">Dashboard</label></a>
+              <a href="admin.html"><label for="name">Dashboard</label></a>
             </div>
             <hr>
 
             <div class="form-group">
-              <a href="orders.html"><label for="phone"><strong>Manage menu</strong></label></a>
+              <label for="phone"><strong>Manage menu</strong></label>
             </div>
             <hr>
 
@@ -120,6 +120,55 @@
       <!-- Dashborad contentent starts here -->
       <div class="body">
       <div class="container1">
+
+        <div class="container mt-5">
+          <!-- Button to add new item -->
+          <div class="mb-3">
+              <button class="btn btn-primary" id="addItemBtn">+ Add New</button>
+          </div>
+          <!-- Bootstrap data table -->
+          <table id="dataTable" class="table table-striped">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Category</th>
+                      <th>Description</th>
+                      <th>Price</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>V125fS</td>
+                      <td>Chicken Burger</td>
+                      <td>Burger</td>
+                      <td>Burger with meat</td>
+                      <td>$10.00</td>
+                  </tr>
+                  <tr>
+                    <td>V1f53t</td>
+                    <td>Fish Burger</td>
+                    <td>Burger</td>
+                    <td>Burger with Chambo fish</td>
+                    <td>$10.50</td>
+                </tr>
+                <tr>
+                  <td>Be14E</td>
+                  <td>Chicken Burger</td>
+                  <td>Sandwish</td>
+                  <td>Tuna Sandwish</td>
+                  <td>$15.00</td>
+              </tr>
+              <tr>
+                <td>D125fS</td>
+                <td>Tuna Sandwish</td>
+                <td>Sandwish</td>
+                <td>Sandwish with flavors</td>
+                <td>$10.00</td>
+            </tr>
+                  <!-- Add more rows as needed -->
+              </tbody>
+          </table>
         
     </div>
   </div> 
