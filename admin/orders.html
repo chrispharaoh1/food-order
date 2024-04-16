@@ -88,17 +88,17 @@
             <hr>
 
             <div class="form-group">
-              <label for="phone"><strong>Manage menu</strong></label>
+              <a href="orders.html"><label for="phone">Manage menu</label></a>
             </div>
             <hr>
 
             <div class="form-group">
-              <a href="settings.html"><label for="phone">Manage orders</label></a>
+              <label for="phone"><strong>Manage orders</strong></label>
             </div>
             <hr>
 
             <div class="form-group">
-              <a href="customer.html"><label for="phone">Customers</label></a>
+              <a href="customers.html"><label for="phone">Customers</label></a>
             </div>
             <hr>
 
@@ -122,18 +122,16 @@
       <div class="container1">
 
         <div class="container mt-5">
-          <!-- Button to add new item -->
-          <div class="mb-3">
-              <button class="btn btn-primary" id="addItemBtn" data-toggle="modal" data-target="#addItemModal">+ Add New</button>
-          </div>
+          <!-- Title -->
+          <h3>Manage orders</h3>
           <!-- Bootstrap data table -->
           <table id="dataTable" class="table table-striped">
               <thead>
                   <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Category</th>
-                      <th>Description</th>
+                      <th>Order ID</th>
+                      <th>Customer</th>
+                      <th>Items</th>
+                      <th>Qty</th>
                       <th>Price</th> 
                       <th>Action</th>
                   </tr>
@@ -141,35 +139,36 @@
               <tbody>
                   <tr>
                       <td>V125fS</td>
+                      <td> John Doe</td>
+                      
                       <td>Chicken Burger</td>
-                      <td>Burger</td>
-                      <td>Burger with meat</td>
+                      <td>1</td>
                       <td>$10.00</td>
-                      <th><a href="#"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a>|&#160;<a href="#"><i class="fa fa-trash" style="font-size:20px;color:black"></i></a></th>
+                      <th><a href="#"><i class="fa fa-eye" style="font-size:20px; color:grey"></i></a>&#160;|&#160;<a href="#"><i class="fa fa-trash" style="font-size:18px;color:grey;"></i></a>&#160;|&#160;<a href="#"><i class="fa fa-check" style="font-size:20px;color:grey"></i></a></th>
                   </tr>
                   <tr>
                     <td>V1f53t</td>
-                    <td>Fish Burger</td>
-                    <td>Burger</td>
-                    <td>Burger with Chambo fish</td>
-                    <td>$10.50</td>
-                    <th><a href="#"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a>|&#160;<a href="#"><i class="fa fa-trash" style="font-size:20px;color:black"></i></a></th>
+                    <td>Chris Pharaoh</td>
+                    <td>Chicken Burger, Grilled chicken Sandwish</td>
+                    <td>2</td>
+                    <td>$35.50</td>
+                    <th><a href="#"><i class="fa fa-eye" style="font-size:20px; color:grey"></i></a>&#160;|&#160;<a href="#"><i class="fa fa-trash" style="font-size:18px;color:grey;"></i></a>&#160;|&#160;<a href="#"><i class="fa fa-check" style="font-size:20px;color:grey"></i></a></th>
                 </tr>
                 <tr>
                   <td>Be14E</td>
-                  <td>Chicken Burger</td>
-                  <td>Sandwish</td>
+                  <td>James Diva</td>
                   <td>Tuna Sandwish</td>
+                  <td>1</td>
                   <td>$15.00</td>
-                  <th><a href="#"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a>|&#160;<a href="#"><i class="fa fa-trash" style="font-size:20px;color:black"></i></a></th>
+                  <th><a href="#"><i class="fa fa-eye" style="font-size:20px; color:grey"></i></a>&#160;|&#160;<a href="#"><i class="fa fa-trash" style="font-size:18px;color:grey;"></i></a>&#160;|&#160;<a href="#"><i class="fa fa-check" style="font-size:20px;color:grey"></i></a></th>
               </tr>
               <tr>
                 <td>D125fS</td>
-                <td>Tuna Sandwish</td>
-                <td>Sandwish</td>
-                <td>Sandwish with flavors</td>
+                <td>Mussah Homa</td>
+                <td>Crips Burger</td>
+                <td>1</td>
                 <td>$10.00</td>
-                <th><a href="#"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a>|&#160;<a href="#"><i class="fa fa-trash" style="font-size:20px;color:black"></i></a></th>
+                <th><a href="#"><i class="fa fa-eye" style="font-size:20px; color:grey"></i></a>&#160;|&#160;<a href="#"><i class="fa fa-trash" style="font-size:18px;color:grey;"></i></a>&#160;|&#160;<a href="#"><i class="fa fa-check" style="font-size:20px;color:grey"></i></a></th>
             </tr>
                   <!-- Add more rows as needed -->
               </tbody>
