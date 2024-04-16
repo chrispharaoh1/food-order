@@ -124,7 +124,7 @@
         <div class="container mt-5">
           <!-- Button to add new item -->
           <div class="mb-3">
-              <button class="btn btn-primary" id="addItemBtn">+ Add New</button>
+              <button class="btn btn-primary" id="addItemBtn" data-toggle="modal" data-target="#addItemModal">+ Add New</button>
           </div>
           <!-- Bootstrap data table -->
           <table id="dataTable" class="table table-striped">
@@ -134,7 +134,8 @@
                       <th>Name</th>
                       <th>Category</th>
                       <th>Description</th>
-                      <th>Price</th>
+                      <th>Price</th> 
+                      <th>Action</th>
                   </tr>
               </thead>
               <tbody>
@@ -144,6 +145,7 @@
                       <td>Burger</td>
                       <td>Burger with meat</td>
                       <td>$10.00</td>
+                      <th><a href="#"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a>|&#160;<a href="#"><i class="fa fa-trash" style="font-size:20px;color:black"></i></a></th>
                   </tr>
                   <tr>
                     <td>V1f53t</td>
@@ -151,6 +153,7 @@
                     <td>Burger</td>
                     <td>Burger with Chambo fish</td>
                     <td>$10.50</td>
+                    <th><a href="#"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a>|&#160;<a href="#"><i class="fa fa-trash" style="font-size:20px;color:black"></i></a></th>
                 </tr>
                 <tr>
                   <td>Be14E</td>
@@ -158,6 +161,7 @@
                   <td>Sandwish</td>
                   <td>Tuna Sandwish</td>
                   <td>$15.00</td>
+                  <th><a href="#"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a>|&#160;<a href="#"><i class="fa fa-trash" style="font-size:20px;color:black"></i></a></th>
               </tr>
               <tr>
                 <td>D125fS</td>
@@ -165,6 +169,7 @@
                 <td>Sandwish</td>
                 <td>Sandwish with flavors</td>
                 <td>$10.00</td>
+                <th><a href="#"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a>|&#160;<a href="#"><i class="fa fa-trash" style="font-size:20px;color:black"></i></a></th>
             </tr>
                   <!-- Add more rows as needed -->
               </tbody>
@@ -181,6 +186,55 @@
     </div>
   </div>
 </div>
+
+<!-- Modal for adding new items starts here -->
+<div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="addItemModalLabel">Add New Item</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form id="addItemForm">
+                  <div class="form-group">
+                      <label for="itemName">Name</label>
+                      <input type="text" class="form-control" id="itemName" name="itemName" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="itemCategory">Category</label>
+                      <select class="form-control" id="itemCategory" name="itemCategory" required>
+                          <option value="">Select Category</option>
+                          <option value="Burger">Burger</option>
+                          <option value="Sandwish">Sandwish</option>
+                          <option value="Khatte Aloo">Khatte Aloo</option>
+                          <!-- Add more options as needed -->
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="itemDescription">Description</label>
+                      <input type="text" class="form-control" id="itemDescription" name="itemDescription" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="itemPrice">Price</label>
+                      <input type="number" class="form-control" id="itemPrice" name="itemPrice" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="itemIngredients">Ingredients</label>
+                      <textarea class="form-control" id="itemIngredients" name="itemIngredients" rows="3"></textarea>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" form="addItemForm">Add Item</button>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Modal for adding new items ends here -->
     <!-- Footer Start -->
     <div class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
       <div class="container py-5">
