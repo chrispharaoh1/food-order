@@ -241,7 +241,7 @@
     const {nameValid, phoneValid, emailValid, passwordValid, name, phoneNumber, email, password } = this.state;
     if (phoneValid && emailValid) {
       // Send form data to PHP backend
-      fetch('submit_form.php', {
+      fetch('register_form.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
