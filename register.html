@@ -204,27 +204,28 @@
       );
     };
   
+    // Validating each input field according to required standard
     validateField = (fieldName, value) => {
 
       let isValid = true;
       switch (fieldName) {
         case "name":
-          const nameRegex = /^[A-Za-z]{2,}$/;
+          const nameRegex = /^[A-Za-z]{2,}$/;  //This rejext restricts the user from inserting name of less than 2 characters. special characters not allowed
           isValid = nameRegex.test(value);
           this.setState({ nameValid: isValid });
           break;
         case "phoneNumber":
-          const phoneRegex = /^\d{10}$/;
+          const phoneRegex = /^\d{10}$/; //Validating the phone number tp contain 10 characters and not allowing special characters
           isValid = phoneRegex.test(value);
           this.setState({ phoneValid: isValid });
           break;
         case "email":
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //Validating email to have all necessary information like @, ., and text
           isValid = emailRegex.test(value);
           this.setState({ emailValid: isValid });
           break;
         case "password":
-          const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+          const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/; //this rejex validate the password to have atleast upper and lower case, a number, and atleast 8 chrater long
           isValid = passwordRegex.test(value);
           this.setState({ passwordValid: isValid });
           break;
@@ -234,11 +235,7 @@
     };
   
   
-  
-  
-  
-  
-  
+  // Handiling form when register button is pressed
     handleSubmit = event => {
     event.preventDefault();
     const {nameValid, phoneValid, emailValid, passwordValid, name, phoneNumber, email, password } = this.state;
