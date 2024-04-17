@@ -176,6 +176,8 @@
 
   <!-- REACT SCRIPT -->
   <script type="text/babel">
+    // importing the modal library
+    import { Modal, Button } from 'react-bootstrap';
     // React component for form validation
    class ValidationForm extends React.Component {
     constructor(props) {
@@ -188,7 +190,8 @@
         nameValid: true,
         phoneValid: true,
         emailValid: true,
-        passwordValid: true
+        passwordValid: true,
+        showModal: false // Add showModal state to control the modal visibility
       };
     }
   
@@ -256,9 +259,10 @@
       })
       .then(data => {
         console.log('Form submitted successfully');
+  
+        // Showing the modal after succesful data insertion
+        this.setState({ showModal: true });
         // Optionally, reset the form fields after successful submission
-        elert("Account created successfully");
-
         this.setState({
           name: name,
           phoneNumber: "",
