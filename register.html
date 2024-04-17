@@ -94,7 +94,7 @@
         </div>
         <div class="card-body">
           <!-- form starts here -->
-        
+        <div id="register">
           <form  id="register">
             <div class="form-group">
               <label for="name">Name</label>
@@ -113,8 +113,9 @@
               <input type="password" class="form-control" id="password" placeholder="Password">
             </div>
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+ 
           </form>
+          </div>
           <!-- Form ends here -->
         </div>
       </div>
@@ -176,8 +177,6 @@
 
   <!-- REACT SCRIPT -->
   <script type="text/babel">
-    // importing the modal library
-    import { Modal, Button } from 'react-bootstrap';
     // React component for form validation
    class ValidationForm extends React.Component {
     constructor(props) {
@@ -191,7 +190,7 @@
         phoneValid: true,
         emailValid: true,
         passwordValid: true,
-        showModal: false // Add showModal state to control the modal visibility
+        showModal: false
       };
     }
   
@@ -242,7 +241,7 @@
     handleSubmit = event => {
     event.preventDefault();
     const {nameValid, phoneValid, emailValid, passwordValid, name, phoneNumber, email, password } = this.state;
-    if (phoneValid && emailValid) {
+    if (nameValid && phoneValid && emailValid && passwordValid) {
       // Send form data to PHP backend
       fetch('register_form.php', {
         method: 'POST',
@@ -259,14 +258,13 @@
       })
       .then(data => {
         console.log('Form submitted successfully');
-  
-        // Showing the modal after succesful data insertion
-        this.setState({ showModal: true });
         // Optionally, reset the form fields after successful submission
+        this.setState({ showModal: true });
+
         this.setState({
           name: name,
-          phoneNumber: "",
-          email: "",
+          phoneNumber: phoneNumber,
+          email: email,
           password: "",
           nameValid: true,
           phoneValid: true,
@@ -275,16 +273,21 @@
         });
       })
       .catch(error => {
-        console.error('There was a problem with your fetch operation:', error);
+        // console.error('There was a problem with your fetch operation:', error);
+        alert("Opps, your email is already registered, please use another email!");
       });
     }
   };
-  
+  // Closing the modal
+  closeModal = () => {
+    this.setState({ showModal: false });
+  };
   
   
     render() {
-      const {nameValid, phoneValid, emailValid, passwordValid } = this.state;
+      const {nameValid, phoneValid, emailValid, passwordValid, showModal } = this.state;
       return (
+        <div>
         <form onSubmit={this.handleSubmit}>
 
           <div className="form-group">
@@ -346,7 +349,7 @@
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Email Password:</label>
+            <label htmlFor="password">Password:</label>
             <input
               type="password"
               className={`form-control ${passwordValid ? "" : "is-invalid"}`}
@@ -370,6 +373,29 @@
             Register
             </button>
         </form>
+         <div className={`modal ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }}>
+           <div className="modal-dialog">
+             <div className="modal-content">
+               <div className="modal-header">
+                <h5 className="modal-title">Success</h5>
+                <button type="button" className="close" onClick={this.closeModal}>
+                  <span>&times;</span>
+                </button>
+               </div>
+               <div className="modal-body">
+                <p>Your Account have been registered successfully!</p>
+                <a href="login.html" className="btn btn-primary">Login</a>
+               </div>
+               <div className="modal-footer">
+             
+               </div>
+             </div>
+           </div>
+         </div>
+         <div className={`modal-backdrop fade ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }}></div>
+</div>
+       
+
       );
     }
   }

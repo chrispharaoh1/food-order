@@ -5,6 +5,7 @@ $name = $data['name'];
 $phoneNumber = $data['phoneNumber'];
 $email = $data['email'];
 $password = $data['password'];
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 // Database connection parameters
 $servername = "localhost";
@@ -22,7 +23,7 @@ if ($conn->connect_error) {
 
 // Prepare SQL statement
 $stmt = $conn->prepare("INSERT INTO customers (name, phone, email, password) VALUES (?, ?, ?, ?)");
-$stmt->bind_param("ssss", $name, $phoneNumber, $email, $password);
+$stmt->bind_param("ssss", $name, $phoneNumber, $email, $hashed_password);
 
 // Execute SQL statement
 if ($stmt->execute() === TRUE) {
