@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 }
 
 // Prepare SQL statement
-$stmt = $conn->prepare("INSERT INTO fcustomers (name,phone, email, password) VALUES (?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO customers (name, phone, email, password) VALUES (?, ?, ?, ?)");
 $stmt->bind_param("ssss", $name, $phoneNumber, $email, $password);
 
 // Execute SQL statement
