@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <!-- Bootstrap CSS -->
+
+</head>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <!-- Google Web Fonts -->
@@ -25,6 +27,11 @@
 
   <!-- Template Stylesheet -->
   <link href="css/style.css" rel="stylesheet">
+
+     <!-- React and babel links -->
+     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
   <style>
   /* Register form */
   /* Adjust the width of the captcha input */
@@ -105,15 +112,18 @@
           Login
         </div>
         <div class="card-body">
-          <form>
+          <div  id="loginform">
+          <form >
             <div class="form-group">
               <label for="email">Email address</label>
               <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
+
             <div class="form-group">
               <label for="password">Password</label>
               <input type="password" class="form-control" id="password" placeholder="Password">
             </div>
+
             <div class="form-group">
               <div class="row">
                 <div class="col-6">
@@ -125,8 +135,10 @@
                 </div>
               </div>          
             </div>
+
             <button type="submit" class="btn btn-primary">Login</button>
           </form>
+          </div>
         </div>
       </div>
     </div>
@@ -186,9 +198,7 @@
   <!-- Footer End -->
 
 <!-- Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -289,6 +299,7 @@
       return (
         <div>
           <form onSubmit={this.handleLogin}>
+
             <div className="form-group">
               <label>Email</label>
               <input
@@ -300,6 +311,8 @@
                 required
               />
             </div>
+
+
             <div className="form-group">
               <label>Password</label>
               <input
@@ -311,28 +324,48 @@
                 required
               />
             </div>
-            <div className="form-group">
-              <label>Captcha</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter captcha"
-                value={this.state.captcha}
-                onChange={this.handleCaptchaChange}
-                required
+
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-6">
+                  <label for="captcha">Captcha</label>
+                  <input
+                     type="text"
+                      className="form-control"
+                      placeholder="Enter captcha"
+                      value={this.state.captcha}
+                      onChange={this.handleCaptchaChange}
+                      required
               />
+                </div>
+                 <div class="col-6">
+                  <img 
+                  id="captcha-image"
+                  src=""
+                   alt="Captcha Image"
+                   class="img-fluid ml-2"/>
+                </div>
+              </div>          
             </div>
+
             <button type="submit" className="btn btn-primary">Login</button>
+            {this.state.error && <p className="text-danger">{this.state.error}</p>}
           </form>
-          {this.state.error && <p className="text-danger">{this.state.error}</p>}
+  
         </div>
       );
     }
   }
 
   // Render the LoginForm component to the HTML element with id "form"
-  ReactDOM.render(<LoginForm />, document.getElementById('form'));
+  ReactDOM.render(<LoginForm />, document.getElementById('id="loginform"'));
 </script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  <!-- JavaScript Libraries -->
  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
