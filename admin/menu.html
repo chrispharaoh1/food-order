@@ -118,9 +118,21 @@
 
         <div class="container mt-5">
           <!-- Button to add new item -->
-          <div class="mb-3">
-              <button class="btn btn-primary" id="addItemBtn" data-toggle="modal" data-target="#addItemModal">+ Add New</button>
+          <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <button class="btn btn-primary" id="addItemBtn" data-toggle="modal" data-target="#addItemModal">+ Add menu type</button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <button class="btn btn-primary" id="addItemBtn" data-toggle="modal" data-target="#addCategoryModal">+ Add menu category </button>
+                </div>
+            </div>
           </div>
+    
+
+     
           <!-- Bootstrap data table -->
           <table id="dataTable" class="table table-striped">
               <thead>
@@ -230,6 +242,34 @@
   </div>
 </div>
 <!-- Modal for adding new items ends here -->
+
+
+<!-- Modal for adding new Categories starts here -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addItemModalLabel">Add Menu Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addItemCategory">
+                    <div class="form-group">
+                      <label for="itemDescription">Category</label>
+                      <input type="text" class="form-control" id="itemDescription" placeholder="Add category name e.g., Sandwich" name="itemDescription" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                  <div id="message"></div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- Modal for adding categories ends here -->
+
+
     <!-- Footer Start -->
     <div class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
       <div class="container py-5">
@@ -280,7 +320,40 @@
       </div>
   </div>
   <!-- Footer End -->
+<script>
+    document.getElementById('addItemCategory').addEventListener('submit', function(event) {
+  event.preventDefault();
 
+  var itemDescription = document.getElementById('itemDescription').value;
+
+  // Validate user input to prevent SQL injection
+//   if (itemDescription == "") {
+//     showMessage('Category name is required');
+//     return;
+//   }
+
+  // AJAX request to save the category name
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '../server/save_category.php', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        showMessage(response.message);
+      } else {
+        showMessage('An error occurred. Please try again later.');
+      }
+    }
+  };
+  xhr.send('itemDescription=' + encodeURIComponent(itemDescription));
+});
+
+function showMessage(message) {
+  document.getElementById('message').innerHTML = '<p>' + message + '</p>';
+}
+
+</script>
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
