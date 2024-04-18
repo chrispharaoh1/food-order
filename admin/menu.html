@@ -222,7 +222,7 @@
                   </div>
                   <div class="form-group">
                       <label for="itemDescription">Description</label>
-                      <input type="text" class="form-control" id="itemDescription" name="itemDescription" required>
+                      <input type="text" class="form-control" id="itemDescription1" name="itemDescription1" required>
                   </div>
                   <div class="form-group">
                       <label for="itemPrice">Price</label>
@@ -255,13 +255,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="addItemCategory">
+                <form id="addItemCategory" method="post">
                     <div class="form-group">
                       <label for="itemDescription">Category</label>
-                      <input type="text" class="form-control" id="itemDescription" placeholder="Add category name e.g., Sandwich" name="itemDescription" required>
+                      <input type="text" class="form-control" value="burger" id="itemDescription" placeholder="Add category name e.g., Sandwich" name="itemDescription" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit"  class="btn btn-primary">Submit</button>
                   </form>
+                    <!-- Messages will be shown here -->
+                    <br>
                   <div id="message"></div>
             </div>
         </div>
@@ -325,6 +327,8 @@
   event.preventDefault();
 
   var itemDescription = document.getElementById('itemDescription').value;
+
+
 
   // Validate user input to prevent SQL injection
 //   if (itemDescription == "") {

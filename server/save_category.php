@@ -15,9 +15,10 @@ try {
 // Check if the request is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Get the POST data
-  $itemDescription = $_POST['itemDescription'];
+  $itemDescription = $_POST["itemDescription"];
 
-  // Prepare the SQL statement to insert category into the menu table
+  if(!empty($itemDescription)){
+    // Prepare the SQL statement to insert category into the menu table
   $query = 'INSERT INTO menu (menu_name) VALUES (:menu_name)';
   $stmt = $db->prepare($query);
   $stmt->bindParam(':menu_name', $itemDescription);
@@ -28,7 +29,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode(['message' => 'Category added successfully']);
   } catch (PDOException $e) {
     echo json_encode(['error' => 'Error adding category: ' . $e->getMessage()]);
+  } 
+ 
+
   }
+
+  else{
+    echo json_encode(['message' => 'Category empty '.$itemDescription]);
+  }
+
+  
 } else {
   // Return error response if not a POST request
   http_response_code(405);
