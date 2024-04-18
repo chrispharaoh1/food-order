@@ -16,18 +16,22 @@ try {
 // Check if the request is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Get the POST data
-  $itemDescription = $data['itemCategory2'];
+  $itemName = $data['itemName'];
+  $itemCategory2 = $data['itemCategory2'];
+  $itemPrice = $data['itemPrice'];
+  $itemIngredients = $data['itemIngredients'];
+ 
 
-  if(!empty($itemDescription)){
+  if(!empty($itemName)){
     // Prepare the SQL statement to insert category into the menu table
   $query = 'INSERT INTO menu (menu_name) VALUES (:menu_name)';
   $stmt = $db->prepare($query);
-  $stmt->bindParam(':menu_name', $itemDescription);
+  $stmt->bindParam(':menu_name', $itemName);
 
   try {
     // Execute the SQL statement
     $stmt->execute();
-    echo json_encode(['message' => $itemDescription.' category added successfully']);
+    echo json_encode(['message' => $itemName.' category added successfully']);
   } catch (PDOException $e) {
     echo json_encode(['error' => 'Error adding category: ' . $e->getMessage()]);
   } 
@@ -36,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   else{
-    echo json_encode(['message' => 'Category empty '.$itemDescription]);
+    echo json_encode(['message' => 'Category empty '.$itemName]);
   }
 
   
