@@ -20,8 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $itemCategory2 = $data['itemCategory2'];
   $itemPrice = $data['itemPrice'];
   $itemIngredients = $data['itemIngredients'];
-  $menu_id = "2";
+  
  
+
+   // Query to fetch the id of the selected category from the database
+   $query = 'SELECT * FROM menu WHERE menu_name = :menu_name';
+   $stmt = $db->prepare($query);
+   $stmt->execute(array(':menu_name' => $itemCategory2));
+   $menuId = $stmt->fetch(PDO::FETCH_ASSOC);
+
+   $menu_id = $menuId['menu_id'];
 
   if(!empty($itemName)){
     // Prepare the SQL statement to insert category into the menu table

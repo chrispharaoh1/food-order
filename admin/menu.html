@@ -131,57 +131,25 @@
             </div>
           </div>
     
-
-     
-          <!-- Bootstrap data table -->
-          <table id="dataTable" class="table table-striped">
+          <div class="container">
+            <h1>Menu Options</h1>
+            <table id="dataTable" class="table table-striped">
               <thead>
-                  <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Category</th>
-                      <th>Description</th>
-                      <th>Price</th> 
-                      <th>Action</th>
-                  </tr>
+                <tr>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Action</th>
+                </tr>
               </thead>
               <tbody>
-                  <tr>
-                      <td>V125fS</td>
-                      <td>Chicken Burger</td>
-                      <td>Burger</td>
-                      <td>Burger with meat</td>
-                      <td>$10.00</td>
-                      <th><a href="#"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a>|&#160;<a href="#"><i class="fa fa-trash" style="font-size:20px;color:black"></i></a></th>
-                  </tr>
-                  <tr>
-                    <td>V1f53t</td>
-                    <td>Fish Burger</td>
-                    <td>Burger</td>
-                    <td>Burger with Chambo fish</td>
-                    <td>$10.50</td>
-                    <th><a href="#"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a>|&#160;<a href="#"><i class="fa fa-trash" style="font-size:20px;color:black"></i></a></th>
-                </tr>
-                <tr>
-                  <td>Be14E</td>
-                  <td>Chicken Burger</td>
-                  <td>Sandwish</td>
-                  <td>Tuna Sandwish</td>
-                  <td>$15.00</td>
-                  <th><a href="#"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a>|&#160;<a href="#"><i class="fa fa-trash" style="font-size:20px;color:black"></i></a></th>
-              </tr>
-              <tr>
-                <td>D125fS</td>
-                <td>Tuna Sandwish</td>
-                <td>Sandwish</td>
-                <td>Sandwish with flavors</td>
-                <td>$10.00</td>
-                <th><a href="#"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a>|&#160;<a href="#"><i class="fa fa-trash" style="font-size:20px;color:black"></i></a></th>
-            </tr>
-                  <!-- Add more rows as needed -->
+                <!-- Data will be populated here dynamically -->
               </tbody>
-          </table>
-        
+            </table>
+          </div>
+          
+     
+          
     </div>
   </div> 
       <!-- Dashboard content list ends here -->
@@ -458,13 +426,96 @@ document.getElementById('addItemForm').addEventListener('submit', function(event
       }
     }
   };
-  // xhr.send('itemName=' + encodeURIComponent(itemName));
-  // xhr.send('itemCategory2=' + encodeURIComponent(itemCategory2));
   xhr.send( JSON.stringify({ itemName, itemCategory2, itemPrice, itemIngredients}));
 });
 
 function showMessage(message) {
   document.getElementById('message2').innerHTML = '<p>' + message + '</p>';
+}
+
+</script>
+
+<!-- ===============================Table script==================================== -->
+<script>
+  window.onload = function() {
+  fetchMenuOptions();
+};
+
+function fetchMenuOptions() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'get_menu_options.php', true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        var menuOptions = JSON.parse(xhr.responseText);
+        populateTable(menuOptions);
+      } else {
+        console.error('Failed to fetch menu options');
+      }
+    }
+  };
+  xhr.send();
+}
+
+function populateTable(menuOptions) {
+  var tableBody = document.querySelector('#dataTable tbody');
+  tableBody.innerHTML = '';
+
+  menuOptions.forEach(function(option) {
+    var row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${option.option_name}</td>
+      <td>${option.category}</td>
+      <td>$${option.price}</td>
+      <td>
+        <a href="#" class="edit" data-id="${option.option_id}"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a> |
+        <a href="#" class="delete" data-id="${option.option_id}"><i class="fa fa-trash" style="font-size:20px;color:black"></i></a>
+      </td>
+    `;
+    tableBody.appendChild(row);
+  });
+
+  // Add event listeners for edit and delete actions
+  var editButtons = document.querySelectorAll('.edit');
+  editButtons.forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      event.preventDefault();
+      var optionId = this.getAttribute('data-id');
+      // Implement edit action
+    });
+  });
+
+  var deleteButtons = document.querySelectorAll('.delete');
+  deleteButtons.forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      event.preventDefault();
+      var optionId = this.getAttribute('data-id');
+      deleteMenuOption(optionId);
+    });
+  });
+}
+
+
+//function for deleting a row
+function deleteMenuOption(optionId) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'delete_menu_option.php', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        if (response.success) {
+          fetchMenuOptions(); // Refresh table after deletion
+        } else {
+          console.error('Failed to delete menu option');
+        }
+      } else {
+        console.error('Failed to delete menu option');
+      }
+    }
+  };
+  xhr.send('optionId=' + encodeURIComponent(optionId));
 }
 
 </script>
