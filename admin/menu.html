@@ -213,11 +213,8 @@
                   <div class="form-group">
                       <label for="itemCategory">Category</label>
                       <select class="form-control" id="itemCategory" name="itemCategory" required>
-                          <option value="">Select Category</option>
-                          <option value="Burger">Burger</option>
-                          <option value="Sandwish">Sandwish</option>
-                          <option value="Khatte Aloo">Khatte Aloo</option>
-                          <!-- Add more options as needed -->
+                        <option value="">Select Category</option>
+                        <!-- Categories will be added here dynamically-->
                       </select>
                   </div>
                   <div class="form-group">
@@ -358,6 +355,39 @@ function showMessage(message) {
 }
 
 </script>
+
+<script>
+    // Populate categories dropdown
+window.onload = function() {
+  var categoryDropdown = document.getElementById('itemCategory');
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '../server/categories.php', true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        var categories = JSON.parse(xhr.responseText);
+        categories.forEach(function(category) {
+          var option = document.createElement('option');
+          option.value = category;
+          option.textContent = category;
+          categoryDropdown.appendChild(option);
+        });
+      } else {
+        console.error('Failed to fetch categories');
+      }
+    }
+  };
+  xhr.send();
+};
+
+// Handle form submission
+document.getElementById('addItemForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  // Your form submission code
+});
+</script>
+
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

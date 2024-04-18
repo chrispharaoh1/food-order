@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   try {
     // Execute the SQL statement
     $stmt->execute();
-    echo json_encode(['message' => 'Category added successfully']);
+    echo json_encode(['message' => $itemDescription.' category added successfully']);
   } catch (PDOException $e) {
     echo json_encode(['error' => 'Error adding category: ' . $e->getMessage()]);
   } 
