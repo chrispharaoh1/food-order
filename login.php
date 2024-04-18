@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if ($user) {
     // Verify the password using password_verify()
     if (password_verify($password, $user['password'])) {
-      echo json_encode(['message' => 'Login successful']);
+      echo json_encode(['message' => '']);
     } else {
       echo json_encode(['message' => 'Invalid email or password']);
     }

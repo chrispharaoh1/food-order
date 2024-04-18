@@ -125,7 +125,25 @@
             </div>          
             <button type="submit" class="btn btn-primary">Login</button>
           </form>
+          <!-- Error messages will be showing here -->
           <div id="message" class="mt-3" style="color:red;"></div>
+
+          <!-- The modal to be showing when the user successfully logged in -->
+          <div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="loginSuccessModalLabel" aria-hidden="true">        
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="loginSuccessModalLabel">Login Successful</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  You have successfully logged in!
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -254,6 +272,21 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
       if (xhr.status === 200) {
         var response = JSON.parse(xhr.responseText);
         showMessage(response.message);
+
+
+        
+        // the success message is empty- so if the message is empty show modal and redirect after 3 seconds
+        if(response.message == ""){
+            var loginSuccessModal = new bootstrap.Modal(document.getElementById('loginSuccessModal'));
+            loginSuccessModal.show();
+
+            // Redirect after 3 seconds
+            setTimeout(function() {
+               window.location.href = 'customer/customer.html';
+            }, 3000);
+        }
+
+
       } else {
         showMessage('An error occurred. Please try again later.');
       }
