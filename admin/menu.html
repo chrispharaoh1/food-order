@@ -212,7 +212,7 @@
                 </div>
                 <div class="form-group">
                   <label for="itemCategory2">Category</label>
-                  <select class="form-control" id="itemCategory2" name="itemCategory2" required/>
+                  <select class="form-control" id="itemCategory2" name="itemCategory2" required>
                     <option value="">Select Category</option>
                     <!-- Categories will be added here dynamically -->
                   </select>
@@ -355,12 +355,12 @@ function showMessage(message) {
     // Populate categories dropdown
 window.onload = function() {
   var categoryDropdown = document.getElementById('itemCategory2');
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', '../server/categories.php', true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      if (xhr.status === 200) {
-        var categories = JSON.parse(xhr.responseText);
+  var xhr2 = new XMLHttpRequest();
+  xhr2.open('GET', '../server/categories.php', true);
+  xhr2.onreadystatechange = function() {
+    if (xhr2.readyState === XMLHttpRequest.DONE) {
+      if (xhr2.status === 200) {
+        var categories = JSON.parse(xhr2.responseText);
         categories.forEach(function(category) {
           var option = document.createElement('option');
           option.value = category;
@@ -372,10 +372,55 @@ window.onload = function() {
       }
     }
   };
-  xhr.send();
+  xhr2.send();
 };
 
-// Handle form submission
+// // Handle form submission
+// document.getElementById('addItemForm').addEventListener('submit', function(event) {
+//   event.preventDefault();
+
+//   var itemName = document.getElementById('itemName').value;
+//   var itemCategory2 = document.getElementById('itemCategory2').value;
+//   var itemPrice = document.getElementById('itemPrice').value;
+//   var itemIngredients = document.getElementById('itemIngredients').value;
+
+ 
+//   // var formData = {
+//   //   itemName: itemName,
+//   //   itemCategory: itemCategory2,
+//   //   itemPrice: itemPrice,
+//   //   itemIngredients: itemIngredients
+//   // };
+
+//   var xhr3 = new XMLHttpRequest();
+//   xhr3.open('POST', 'saveitem.php', true);
+//   xhr3.onreadystatechange = function() {
+//     if (xhr3.readyState === XMLHttpRequest.DONE) {
+//       if (xhr3.status === 200) {
+//         var response = JSON.parse(xhr3.responseText);
+//         showMessage(response.message);
+//       } else {
+//         showMessage('An error occurred. Please try again later.');
+//       }
+//     }
+//   };
+//   // xhr3.send(JSON.stringify(formData)); itemName
+//   xhr3.send('itemName=' + encodeURIComponent(itemName));
+// });
+
+// function showMessage(message) {
+//   document.getElementById('message2').innerHTML = '<p>' + message + '</p>';
+// }
+
+
+
+
+
+
+
+
+
+
 document.getElementById('addItemForm').addEventListener('submit', function(event) {
   event.preventDefault();
 
@@ -384,14 +429,25 @@ document.getElementById('addItemForm').addEventListener('submit', function(event
   var itemPrice = document.getElementById('itemPrice').value;
   var itemIngredients = document.getElementById('itemIngredients').value;
 
-  var formData = new FormData();
-  formData.append('itemName', itemName);
-  formData.append('itemCategory2', itemCategory2);
-  formData.append('itemPrice', itemPrice);
-  formData.append('itemIngredients', itemIngredients);
+    var formData = {
+    itemName: itemName,
+    itemCategory: itemCategory2
+    // itemPrice: itemPrice,
+    // itemIngredients: itemIngredients
+  };
 
+
+
+//   Validate user input to prevent SQL injection
+  // if (!itemDescription) {
+  //   showMessage('Category name is required');
+  //   return;
+  // }
+
+  // AJAX request to save the category name
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'saveitem.php', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
@@ -402,12 +458,15 @@ document.getElementById('addItemForm').addEventListener('submit', function(event
       }
     }
   };
-  xhr.send(formData);
+  // xhr.send('itemName=' + encodeURIComponent(itemName));
+  // xhr.send('itemCategory2=' + encodeURIComponent(itemCategory2));
+  xhr.send( JSON.stringify({ itemName, itemCategory2}));
 });
 
 function showMessage(message) {
   document.getElementById('message2').innerHTML = '<p>' + message + '</p>';
 }
+
 </script>
 
 <!-- Bootstrap JS -->

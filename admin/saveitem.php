@@ -1,4 +1,5 @@
 <?php
+$data = json_decode(file_get_contents('php://input'), true);
 // Database connection
 $dsn = 'mysql:host=localhost;dbname=food_store';
 $username = 'root';
@@ -8,7 +9,6 @@ try {
   $db = new PDO($dsn, $username, $password);
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-  http_response_code(500);
   echo json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]);
   exit;
 }
@@ -16,27 +16,30 @@ try {
 // Check if the request is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Get the POST data
-  $itemName = $_POST['itemName'];
-  $itemCategory = $_POST['itemCategory'];
-  $itemPrice = $_POST['itemPrice'];
-  $itemIngredients = $_POST['itemIngredients'];
+  $itemDescription = $data['itemName'];
 
-  // Prepare the SQL statement to insert item into the menu_option table
-  $query = 'INSERT INTO menu_option (option_name, menu_id, category, price, ingredients) VALUES (:option_name, :menu_id, :category, :price, :ingredients)';
+  if(!empty($itemDescription)){
+    // Prepare the SQL statement to insert category into the menu table
+  $query = 'INSERT INTO menu (menu_name) VALUES (:menu_name)';
   $stmt = $db->prepare($query);
-  $stmt->bindParam(':option_name', $itemName);
-  $stmt->bindParam(':menu_id', $itemCategory);
-  $stmt->bindParam(':category', $itemCategory); // Assuming category is the same as menu_id, adjust if necessary
-  $stmt->bindParam(':price', $itemPrice);
-  $stmt->bindParam(':ingredients', $itemIngredients);
+  $stmt->bindParam(':menu_name', $itemDescription);
 
   try {
     // Execute the SQL statement
     $stmt->execute();
-    echo json_encode(['message' => 'Item added successfully']);
+    echo json_encode(['message' => $itemDescription.' category added successfully']);
   } catch (PDOException $e) {
-    echo json_encode(['error' => 'Error adding item: ' . $e->getMessage()]);
+    echo json_encode(['error' => 'Error adding category: ' . $e->getMessage()]);
+  } 
+ 
+
   }
+
+  else{
+    echo json_encode(['message' => 'Category empty '.$itemDescription]);
+  }
+
+  
 } else {
   // Return error response if not a POST request
   http_response_code(405);
