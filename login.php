@@ -30,6 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verify the password using password_verify()
     if (password_verify($password, $user['password'])) {
       echo json_encode(['message' => '']);
+
+      //Creating sessions for the user
+      $_SESSION['email'] = $email;
+      $_SESSION['name'] = $user['name'];
+
     } else {
       echo json_encode(['message' => 'Invalid email or password']);
     }
