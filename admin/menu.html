@@ -429,20 +429,20 @@ document.getElementById('addItemForm').addEventListener('submit', function(event
   var itemPrice = document.getElementById('itemPrice').value;
   var itemIngredients = document.getElementById('itemIngredients').value;
 
-    var formData = {
-    itemName: itemName,
-    itemCategory: itemCategory2
-    // itemPrice: itemPrice,
-    // itemIngredients: itemIngredients
-  };
+//     var formData = {
+//     itemName: itemName,
+//     itemCategory: itemCategory2,
+//     itemPrice: itemPrice,
+//     itemIngredients: itemIngredients
+//   };
 
 
 
-//   Validate user input to prevent SQL injection
-  // if (!itemDescription) {
-  //   showMessage('Category name is required');
-  //   return;
-  // }
+// //   Validate user input to prevent SQL injection
+//   // if (!itemDescription) {
+//   //   showMessage('Category name is required');
+//   //   return;
+//   // }
 
   // AJAX request to save the category name
   var xhr = new XMLHttpRequest();
@@ -460,7 +460,7 @@ document.getElementById('addItemForm').addEventListener('submit', function(event
   };
   // xhr.send('itemName=' + encodeURIComponent(itemName));
   // xhr.send('itemCategory2=' + encodeURIComponent(itemCategory2));
-  xhr.send( JSON.stringify({ itemName, itemCategory2}));
+  xhr.send( JSON.stringify({ itemName, itemCategory2, itemPrice, itemIngredients}));
 });
 
 function showMessage(message) {

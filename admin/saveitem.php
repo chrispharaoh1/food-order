@@ -16,7 +16,7 @@ try {
 // Check if the request is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Get the POST data
-  $itemDescription = $data['itemName'];
+  $itemDescription = $data['itemCategory2'];
 
   if(!empty($itemDescription)){
     // Prepare the SQL statement to insert category into the menu table
