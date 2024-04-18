@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Function to populate the edit modal with data for a specific optionId
 function populateEditModal(optionId) {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'get_menu_options.php?optionId=' + optionId, true);
+    xhr.open('GET', 'getOptionDataForEdit.php?optionId=' + optionId, true);
     xhr.onreadystatechange = function() {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {

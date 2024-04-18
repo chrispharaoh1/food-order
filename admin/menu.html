@@ -232,11 +232,13 @@
   <!-- Modal for adding categories ends here -->
 
   <!-- Modal for editing starts here -->
-<div id="editModal" class="modal">
-  <div class="modal-content">
+<div id="editModal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
     <span class="close">&times;</span>
     <h2>Edit Option</h2>
-    <form id="editForm">
+     <form id="editForm">
       <!-- Input fields for editing -->
       <div class="form-group">
         <label for="editName">Name</label>
@@ -252,6 +254,8 @@
       </div>
       <button type="submit" class="btn btn-primary">Save Changes</button>
     </form>
+    </div>
+    </div>
   </div>
 </div>
 <!-- Modal for editing ends here -->
