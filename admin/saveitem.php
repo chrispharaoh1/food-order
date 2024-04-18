@@ -20,13 +20,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $itemCategory2 = $data['itemCategory2'];
   $itemPrice = $data['itemPrice'];
   $itemIngredients = $data['itemIngredients'];
+  $menu_id = "2";
  
 
   if(!empty($itemName)){
     // Prepare the SQL statement to insert category into the menu table
-  $query = 'INSERT INTO menu (menu_name) VALUES (:menu_name)';
+  $query = 'INSERT INTO menu_option (option_name, menu_id, category, price, ingredients) VALUES (:option_name, :menu_id, :category, :price, :ingredients)';
   $stmt = $db->prepare($query);
-  $stmt->bindParam(':menu_name', $itemName);
+  $stmt->bindParam(':option_name', $itemName);
+  $stmt->bindParam(':menu_id', $menu_id);
+  $stmt->bindParam(':category', $itemCategory2);
+  $stmt->bindParam(':price', $itemPrice);
+  $stmt->bindParam(':ingredients', $itemIngredients);
+
+  // // Prepare and execute the SQL statement to insert item into the menu_option table
+  // $query = 'INSERT INTO menu_option (option_name, menu_id, category, price, ingredients) VALUES (:option_name, :menu_id, :category, :price, :ingredients)';
+  // $stmt = $db->prepare($query);
+  // $stmt->bindParam(':option_name', $itemName);
+  // $stmt->bindParam(':menu_id', '3');
+  
 
   try {
     // Execute the SQL statement
