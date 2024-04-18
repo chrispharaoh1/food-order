@@ -133,13 +133,14 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="loginSuccessModalLabel">Login Successful</h5>
+                  <h5 class="modal-title" id="loginSuccessModalLabel">Success</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  You have successfully logged in!
+                  <h5 style="text-align: center;">You have successfully logged in!</h5>
+                  <p style="text-align: center;">We're redirecting you...</p>
                 </div>
               </div>
             </div>
@@ -283,7 +284,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
             // Redirect after 3 seconds
             setTimeout(function() {
                window.location.href = 'customer/customer.html';
-            }, 3000);
+            }, 5000);
         }
 
 
