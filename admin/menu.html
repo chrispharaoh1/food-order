@@ -208,11 +208,11 @@
             <form id="addItemForm">
                 <div class="form-group">
                   <label for="itemName">Name</label>
-                  <input type="text" class="form-control" id="itemName" name="itemName" required>
+                  <input type="text" class="form-control" id="itemName" name="itemName" required/>
                 </div>
                 <div class="form-group">
-                  <label for="itemCategory">Category</label>
-                  <select class="form-control" id="itemCategory" name="itemCategory" required>
+                  <label for="itemCategory2">Category</label>
+                  <select class="form-control" id="itemCategory2" name="itemCategory2" required/>
                     <option value="">Select Category</option>
                     <!-- Categories will be added here dynamically -->
                   </select>
@@ -354,7 +354,7 @@ function showMessage(message) {
 <script>
     // Populate categories dropdown
 window.onload = function() {
-  var categoryDropdown = document.getElementById('itemCategory');
+  var categoryDropdown = document.getElementById('itemCategory2');
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '../server/categories.php', true);
   xhr.onreadystatechange = function() {
@@ -380,18 +380,18 @@ document.getElementById('addItemForm').addEventListener('submit', function(event
   event.preventDefault();
 
   var itemName = document.getElementById('itemName').value;
-  var itemCategory = document.getElementById('itemCategory').value;
+  var itemCategory2 = document.getElementById('itemCategory2').value;
   var itemPrice = document.getElementById('itemPrice').value;
   var itemIngredients = document.getElementById('itemIngredients').value;
 
   var formData = new FormData();
   formData.append('itemName', itemName);
-  formData.append('itemCategory', itemCategory);
+  formData.append('itemCategory2', itemCategory2);
   formData.append('itemPrice', itemPrice);
   formData.append('itemIngredients', itemIngredients);
 
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'save_item.php', true);
+  xhr.open('POST', 'saveitem.php', true);
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
