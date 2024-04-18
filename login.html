@@ -242,7 +242,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
   var captchaValue = localStorage.getItem('captchaValue');
 
   if (captcha !== captchaValue) {
-    showMessage('Incorrect captcha');
+    showMessage('Incorrect captcha, click the image to change');
     return;
   }
 
