@@ -69,9 +69,18 @@ function displayFoodPictures() {
     var foodDiv = document.getElementById("foodT");
     var priceDiv = document.getElementById("price");
     var headingDiv = document.getElementById("heading");
+    var qtyDiv = document.getElementById("qty");
+    var buyDiv = document.getElementById("buy")
+    var labelSelectDiv = document.getElementById("labelSelect")
 
-    // Clear previous pictures
-    foodPicturesDiv.innerHTML = "";
+    // Clear previous elements
+    foodPicturesDiv.innerHTML = ""; 
+    foodDiv.innerHTML = "";
+    priceDiv.innerHTML = "";
+    headingDiv.innerHTML = "";
+    qtyDiv.innerHTML = "";
+    buyDiv.innerHTML = "";
+    labelSelectDiv.innerHTML = "";
 
     if (selectedFood !== "") {
         var xhr = new XMLHttpRequest();
@@ -104,6 +113,25 @@ function displayFoodPictures() {
                          var price = document.createElement("label");
                          price.textContent = imageData.priceInDollars;
                          priceDiv.appendChild(price);
+
+                        //Quantity
+                        var qty = document.createElement("input");
+                        qty.type = "number";
+                        qty.style.width = "65px";
+                        qty.value = "1";
+                        qtyDiv.appendChild(qty);
+
+                        //Order button
+                        var buy = document.createElement("input");
+                        buy.type = "button";
+                        buy.value = "Buy now";
+                        buyDiv.appendChild(buy);
+
+                         //title text for select
+                         var selectLabe = document.createElement("label");
+                         selectLabe.textContent = "Select Food Type:";
+                         labelSelectDiv.appendChild(selectLabe);
+
 
                         //displaying the block containing the peice and other infor
                         document.getElementById("product-info").style.display = 'block';
