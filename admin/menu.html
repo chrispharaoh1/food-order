@@ -431,6 +431,7 @@ document.getElementById('addItemForm').addEventListener('submit', function(event
   var itemCategory2 = document.getElementById('itemCategory2').value;
   var itemPrice = document.getElementById('itemPrice').value;
   var itemIngredients = document.getElementById('itemIngredients').value;
+  var file = document.getElementById('file').value;
 
 
   // AJAX request to save the category name
@@ -447,7 +448,7 @@ document.getElementById('addItemForm').addEventListener('submit', function(event
       }
     }
   };
-  xhr.send( JSON.stringify({ itemName, itemCategory2, itemPrice, itemIngredients}));
+  xhr.send( JSON.stringify({ itemName, itemCategory2, itemPrice, itemIngredients,file}));
 });
 
 function showMessage(message) {

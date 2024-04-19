@@ -22,7 +22,7 @@ if (!isset($_GET['menuId'])) {
 $menuId = $_GET['menuId'];
 
 // Query to fetch food options for the given category from the database
-$query = 'SELECT option_name FROM menu_option WHERE menu_id = :menuId';
+$query = 'SELECT option_name, image_data FROM menu_option WHERE menu_id = :menuId';
 $stmt = $db->prepare($query);
 $stmt->bindParam(':menuId', $menuId);
 

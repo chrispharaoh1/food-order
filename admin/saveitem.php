@@ -20,8 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $itemCategory2 = $data['itemCategory2'];
   $itemPrice = $data['itemPrice'];
   $itemIngredients = $data['itemIngredients'];
-  
- 
+  $files = $data['file'];
+  $file = $filename = basename($files); //stripping the path from the to  remain with the name of the file only
+
 
    // Query to fetch the id of the selected category from the database
    $query = 'SELECT * FROM menu WHERE menu_name = :menu_name';
@@ -33,13 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if(!empty($itemName)){
     // Prepare the SQL statement to insert category into the menu table
-  $query = 'INSERT INTO menu_option (option_name, menu_id, category, price, ingredients) VALUES (:option_name, :menu_id, :category, :price, :ingredients)';
+  $query = 'INSERT INTO menu_option (option_name, menu_id, category, price, ingredients, image_data) VALUES (:option_name, :menu_id, :category, :price, :ingredients, :image_data)';
   $stmt = $db->prepare($query);
   $stmt->bindParam(':option_name', $itemName);
   $stmt->bindParam(':menu_id', $menu_id);
   $stmt->bindParam(':category', $itemCategory2);
   $stmt->bindParam(':price', $itemPrice);
   $stmt->bindParam(':ingredients', $itemIngredients);
+  $stmt->bindParam(':image_data', $file);
 
   // // Prepare and execute the SQL statement to insert item into the menu_option table
   // $query = 'INSERT INTO menu_option (option_name, menu_id, category, price, ingredients) VALUES (:option_name, :menu_id, :category, :price, :ingredients)';
@@ -51,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   try {
     // Execute the SQL statement
     $stmt->execute();
-    echo json_encode(['message' => $itemName.' category added successfully']);
+    echo json_encode(['message' => $itemName.' category added successfully '.$file]);
   } catch (PDOException $e) {
     echo json_encode(['error' => 'Error adding category: ' . $e->getMessage()]);
   } 
