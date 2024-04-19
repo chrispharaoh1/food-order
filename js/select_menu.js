@@ -65,7 +65,10 @@ function populateFoodOptions() {
 function displayFoodPictures() {
     var selectedCategory = document.getElementById("foodCategory").value;
     var selectedFood = document.getElementById("foodType").value;
-    var foodPicturesDiv = document.getElementById("foodPictures");
+    var foodPicturesDiv = document.getElementById("foodPictures"); 
+    var foodDiv = document.getElementById("foodT");
+    var priceDiv = document.getElementById("price");
+    var headingDiv = document.getElementById("heading");
 
     // Clear previous pictures
     foodPicturesDiv.innerHTML = "";
@@ -78,12 +81,33 @@ function displayFoodPictures() {
                 if (xhr.status === 200) {
                     var imageData = JSON.parse(xhr.responseText);
 
+                    //creating a picture tag
                         var img = document.createElement("img");
+                        //Adding image source from the database
                         img.src = imageData.imageUrl;
-                        // img.src = "FRONT.PNG";
                         img.alt = selectedFood;
                         img.className = "col-md-4";
-                        foodPicturesDiv.appendChild(img);        
+                        //appending the image to the picture id to be displayed
+                        foodPicturesDiv.appendChild(img); 
+                        
+                        //heading
+                        var h4 = document.createElement("h4");
+                        h4.textContent = selectedFood;
+                        headingDiv.appendChild(h4);
+
+                        //Food type
+                        var label = document.createElement("label");
+                        label.textContent = " "+selectedFood;
+                        foodDiv.appendChild(label);
+
+                         //Price
+                         var price = document.createElement("label");
+                         price.textContent = imageData.priceInDollars;
+                         priceDiv.appendChild(price);
+
+                        //displaying the block containing the peice and other infor
+                        document.getElementById("product-info").style.display = 'block';
+
                 } else {
                     console.error('Failed to fetch food image');
                 }

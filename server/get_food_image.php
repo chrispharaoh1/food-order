@@ -34,7 +34,9 @@ try {
     if ($imageData) {
    
         // Output the image Url --> encoded in jason format
-        echo json_encode(['imageUrl' => 'img/'.$imageData['image_data']]);
+        echo json_encode(['imageUrl' => 'img/'.$imageData['image_data'], 'priceInDollars' => $imageData['price']]);
+        // Output the price --> encoded in jason format
+        
     } else {
         http_response_code(404);
         echo json_encode(['error' => 'Image data not found for option name: ' . $optionName]);
