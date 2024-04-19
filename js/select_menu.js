@@ -31,7 +31,7 @@ function populateFoodOptions() {
 
     if (selectedCategory !== "") {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'get_food_options.php?menuId=' + selectedCategory, true);
+        xhr.open('GET', '../server/options.php?menuId=' + selectedCategory, true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
