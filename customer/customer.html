@@ -118,41 +118,25 @@
           
                <!-- Menu stars herre -->
                
-    <div class="container">
-      <h1 class="text-center">Food Menu</h1>
-      <div class="form-group">
-        <label for="foodCategory">Select Food Category:</label>
-        <select style="border-radius: 10px; background-color: white;" class="form-control" id="foodCategory">
-          <option value="">Select</option>
-          <option value="burger">Burger</option>
-          <option value="sandwich">Sandwich</option>
-        </select>
-      </div>
-      <div class="form-group" id="foodOptions">
-        <label for="foodType" style="display: none;">Select Food Type:</label>
-        <select class="form-control" id="foodType" style="display:none" disabled>
-          <option value="">Select a category first</option>
-        </select>
-      </div>
+<!-- Product Start -->
+<div class="container">
+  <h1 class="text-center">Food Menu</h1>
+  <div class="form-group">
+    <label for="foodCategory">Select Food Category:</label>
+    <select style="border-radius: 10px; background-color: white;" class="form-control" id="foodCategory">
+      <option value="">Select</option>
+      <!-- Categories will be added here dynamically -->
+    </select>
+  </div>
+  <div class="form-group" id="foodOptions">
+    <label for="foodType">Select Food Type:</label>
+    <select class="form-control" id="foodType" style="display:none" disabled>
+      <option value="">Select a category first</option>
+      <!-- Options will be added here dynamically -->
+    </select>
+  </div>
+</div>
 
-      <div  class="row" style="margin-top: 25px;">
-        <!-- Food pictures will be displayed here -->
-          <div class="col-lg-6" >
-              <div class="d" style=" height: 100%; width: 150; display: block; margin-left: auto; margin-right: auto;" id="foodPictures"></div>
-          </div>
-          <div class="col" id="product-info" style="display: none;">
-              <h4>Chicken burger</h4>
-              <hr>
-              <p><span style="font-weight: bold;">Category:</span> Burger, Chicken</p>
-              <p><span style="font-weight: bold;">Keywords:</span> chicken, burger, bun</p>
-              <hr>
-              <p><span style="font-weight: bold;">Price:</span> $21</p>
-              <p><span style="font-weight: bold;">Qty:</span></p>
-              <input type="number" name="num" value="1" id="" style="width: 60px;">
-              <input type="button"  value="Add to cart">
-          </div>
-      </div>
-    </div>
   <!-- Menu ends here herre -->
 
   <h5 class="text-center">Browse the list of available foods</h5>
@@ -424,6 +408,9 @@
  <script src="../lib/waypoints/waypoints.min.js"></script>
  <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
  <script src="../js/main.js"></script>
+ <!-- Custom js -->
+ <!-- File for population select options in the menu -->
+ <script src="../js/select_menu.js"></script>
 
 </body>
 </html>
