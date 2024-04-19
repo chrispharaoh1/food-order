@@ -1,7 +1,7 @@
    // Function to fetch the number of active customers
    function fetchCustomerCount() {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'get_customer_count.php', true);
+    xhr.open('GET', '../server/get_customer_count.php', true);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
