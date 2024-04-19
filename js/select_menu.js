@@ -25,9 +25,11 @@ function populateFoodCategories() {
 function populateFoodOptions() {
     var selectedCategory = document.getElementById("foodCategory").value;
     var foodTypeSelect = document.getElementById("foodType");
+    var labelSelectDiv = document.getElementById("labelSelect");
 
     // Clear previous options
     foodTypeSelect.innerHTML = "<option value=''>Select</option>";
+    labelSelectDiv.innerHTML = "";
 
     if (selectedCategory !== "") {
         var xhr = new XMLHttpRequest();
@@ -45,6 +47,12 @@ function populateFoodOptions() {
                     // Enable food type select
                     foodTypeSelect.style.display = 'block';
                     foodTypeSelect.disabled = false;
+
+                      //title text for select
+                      var selectLabe = document.createElement("label");
+                      selectLabe.textContent = "Select Food Type:";
+                      labelSelectDiv.appendChild(selectLabe);
+
                 } else {
                     console.error('Failed to fetch food options');
                 }
@@ -70,8 +78,8 @@ function displayFoodPictures() {
     var priceDiv = document.getElementById("price");
     var headingDiv = document.getElementById("heading");
     var qtyDiv = document.getElementById("qty");
-    var buyDiv = document.getElementById("buy")
-    var labelSelectDiv = document.getElementById("labelSelect")
+    var buyDiv = document.getElementById("buy");
+    
 
     // Clear previous elements
     foodPicturesDiv.innerHTML = ""; 
@@ -80,7 +88,7 @@ function displayFoodPictures() {
     headingDiv.innerHTML = "";
     qtyDiv.innerHTML = "";
     buyDiv.innerHTML = "";
-    labelSelectDiv.innerHTML = "";
+    
 
     if (selectedFood !== "") {
         var xhr = new XMLHttpRequest();
@@ -127,10 +135,14 @@ function displayFoodPictures() {
                         buy.value = "Buy now";
                         buyDiv.appendChild(buy);
 
-                         //title text for select
-                         var selectLabe = document.createElement("label");
-                         selectLabe.textContent = "Select Food Type:";
-                         labelSelectDiv.appendChild(selectLabe);
+                        //Enent listener for the button click
+                        buy.addEventListener("click", function(){
+                            localStorage.setItem("imageUrl", img.src); // Store value in localStorage
+                            localStorage.setItem("foodOption", label.textContent); // Store value in localStorage
+                            localStorage.setItem("price", price.textContent); // Store value in localStorage
+                            localStorage.setItem("qty", qty.value); // Store value in localStorage                          
+                            window.location.href = 'pay.html';
+                        });
 
 
                         //displaying the block containing the peice and other infor
@@ -151,6 +163,7 @@ function displayFoodPictures() {
         // foodPicturesDiv.appendChild(img);
     }
 }
+
 
 // Event listeners
 document.getElementById("foodCategory").addEventListener("change", populateFoodOptions);
