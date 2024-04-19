@@ -15,12 +15,7 @@ function populateFoodOptions() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     var options = JSON.parse(xhr.responseText);
-                    options.forEach(option => {
-                        var optionElement = document.createElement("option");
-                        optionElement.value = option.option_name;
-                        optionElement.textContent = option.option_name;
-                        foodTypeSelect.appendChild(optionElement);
-                    });
+
                     // Enable food type select
                     foodTypeSelect.style.display = 'block';
                     foodTypeSelect.disabled = false;
@@ -47,7 +42,7 @@ function displayFoodPictures() {
     // Clear previous pictures
     foodPicturesDiv.innerHTML = "";
 
-    if (selectedCategory !== "" && selectedFood !== "") {
+    if (selectedFood !== "") {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '../server/get_food_image.php?category=' + selectedCategory + '&food=' + selectedFood, true);
         xhr.onreadystatechange = function() {
@@ -56,7 +51,8 @@ function displayFoodPictures() {
                     var imageData = JSON.parse(xhr.responseText);
                     if (imageData && imageData.image_url) {
                         var img = document.createElement("img");
-                        img.src = imageData.image_url;
+                        // img.src = imageData.image_url;
+                        img.src = FRONT.PNG
                         img.alt = selectedFood;
                         img.className = "col-md-4";
                         foodPicturesDiv.appendChild(img);
@@ -71,5 +67,5 @@ function displayFoodPictures() {
 }
 
 // Event listeners
-document.getElementById("foodCategory").addEventListener("change", populateFoodOptions);
+// document.getElementById("foodCategory").addEventListener("change", populateFoodOptions);
 document.getElementById("foodType").addEventListener("change", displayFoodPictures);

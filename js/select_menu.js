@@ -59,8 +59,52 @@ function populateFoodOptions() {
     }
 }
 
+
+
+// Function to display food pictures
+function displayFoodPictures() {
+    var selectedCategory = document.getElementById("foodCategory").value;
+    var selectedFood = document.getElementById("foodType").value;
+    var foodPicturesDiv = document.getElementById("foodPictures");
+
+    // Clear previous pictures
+    foodPicturesDiv.innerHTML = "";
+
+    if (selectedFood !== "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '../server/get_food_image.php?category=' + selectedCategory + '&food=' + selectedFood, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var imageData = JSON.parse(xhr.responseText);
+                    if (imageData && imageData.image_url) {
+                        var img = document.createElement("img");
+                        // img.src = imageData.image_url;
+                        img.src = FRONT.PNG
+                        img.alt = selectedFood;
+                        img.className = "col-md-4";
+                        foodPicturesDiv.appendChild(img);
+                    }
+                } else {
+                    console.error('Failed to fetch food image');
+                }
+            }
+        };
+        xhr.send();
+
+        // var img = document.createElement("img");
+        // // img.src = imageData.image_url;
+        // img.src = "FRONT.PNG";
+        // img.alt = selectedFood;
+        // img.className = "col-md-4";
+        // foodPicturesDiv.appendChild(img);
+    }
+}
+
 // Event listeners
 document.getElementById("foodCategory").addEventListener("change", populateFoodOptions);
+document.getElementById("foodType").addEventListener("change", displayFoodPictures);
+
 
 // Call the function to populate food categories when the page loads
 populateFoodCategories();
