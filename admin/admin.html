@@ -116,10 +116,11 @@
       <div class="body">
       <div class="container1">
         <!-- Card to display number of active customers -->
-        <div class="card">
-            <h2 style="text-align: center;">Active Customers</h2>
-            <p style="font-size: 25px; text-align: center;"><small  class="fa fa-user text-body"></small> 250</p>
-        </div>
+        <div class="card" id="activeCustomersCard">
+          <h2 style="text-align: center;">Active Customers</h2>
+          <p style="font-size: 35px; text-align: center;"> &nbsp;<span id="customerCount">Loading...</span></p>
+      </div>
+      
         <!-- Card to display weekly earnings -->
         <div class="card">
             <h2 style="text-align: center;">This Week Earnings</h2>
@@ -232,6 +233,9 @@
  <script src="../lib/waypoints/waypoints.min.js"></script>
  <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
  <script src="../js/main.js"></script>
+ <!-- Javascript customscripts -->
+ <!-- Retrieving number of users from the datbase -->
+ <script src="../js/number_of_user.js"></script>
 
 </body>
 </html>
