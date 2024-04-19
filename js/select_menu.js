@@ -77,14 +77,13 @@ function displayFoodPictures() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     var imageData = JSON.parse(xhr.responseText);
-                    if (imageData && imageData.image_url) {
+
                         var img = document.createElement("img");
-                        // img.src = imageData.image_url;
-                        img.src = FRONT.PNG
+                        img.src = imageData.imageUrl;
+                        // img.src = "FRONT.PNG";
                         img.alt = selectedFood;
                         img.className = "col-md-4";
-                        foodPicturesDiv.appendChild(img);
-                    }
+                        foodPicturesDiv.appendChild(img);        
                 } else {
                     console.error('Failed to fetch food image');
                 }

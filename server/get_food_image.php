@@ -13,27 +13,28 @@ try {
 }
 
 // Check if optionName parameter is provided
-if (!isset($_GET['optionName'])) {
+if (!isset($_GET['category'])) {
     http_response_code(400);
     echo json_encode(['error' => 'Option Name not provided']);
     exit;
 }
 
-$optionName = $_GET['optionName'];
+$optionName = $_GET['food'];
+$menu_id = $_GET['category'];
 
 // Query to fetch image data for the given option name from the database
-$query = 'SELECT image_data FROM menu_option WHERE option_name = :optionName';
+$query = 'SELECT * FROM menu_option WHERE option_name = :optionName AND menu_id = :menu_id';
 $stmt = $db->prepare($query);
 $stmt->bindParam(':optionName', $optionName);
+$stmt->bindParam(':menu_id', $menu_id);
 
 try {
     $stmt->execute();
     $imageData = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($imageData) {
-        // Set the content type header to indicate that the response is an image
-        header('Content-Type: image/png'); // Adjust the content type based on the image format
-        // Output the image Url
-        echo "img/".$imageData['image_data'];
+   
+        // Output the image Url --> encoded in jason format
+        echo json_encode(['imageUrl' => 'img/'.$imageData['image_data']]);
     } else {
         http_response_code(404);
         echo json_encode(['error' => 'Image data not found for option name: ' . $optionName]);
