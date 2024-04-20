@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $_SESSION['email'] = $email;
       $_SESSION['name'] = $user['name'];
       $_SESSION['customer_id'] = $user['customer_id'];
-      $_SESSION['name'] = $user['name'];
+      $_SESSION['phone'] = $user['phone'];
 
     } else {
       echo json_encode(['message' => 'Invalid email or password']);
