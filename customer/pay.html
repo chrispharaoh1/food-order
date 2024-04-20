@@ -152,6 +152,10 @@
                                                 <div class="btn btn-primary w-100">Sumbit</div>
                                             </div>
                                         </div>
+                                        <!-- Hidden iputs to hold the localStorage values -->
+                                        <input type="hidden" id="foodOption" name="foodOption" value="">
+                                        <input type="hidden" id="price" name="price" value="">
+                                        <input type="hidden" id="qty" name="qty" value="">
                                     </form>
                                 </div>
                             </div>
@@ -162,6 +166,26 @@
         </div>
     </div>
 <script>
+// Success modal
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Order placed successfully!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 //getting ordered values from localstorage
 document.addEventListener("DOMContentLoaded", function() {
   var price = localStorage.getItem('price');
