@@ -128,6 +128,11 @@ function displayFoodPictures() {
                         qty.style.width = "65px";
                         qty.value = "1";
                         qtyDiv.appendChild(qty);
+                        qty.addEventListener("change", function(){
+                            var newprice = qty.value * price.textContent;
+                            priceDiv.appendChild(newprice);
+                        });
+
 
                         //Order button
                         var buy = document.createElement("input");
@@ -140,7 +145,8 @@ function displayFoodPictures() {
                             localStorage.setItem("imageUrl", img.src); // Store value in localStorage
                             localStorage.setItem("foodOption", label.textContent); // Store value in localStorage
                             localStorage.setItem("price", price.textContent); // Store value in localStorage
-                            localStorage.setItem("qty", qty.value); // Store value in localStorage                          
+                            localStorage.setItem("qty", qty.value); // Store value in localStorage 
+                            localStorage.setItem("total", qty.value * price.textContent); // Store value in localStorage                         
                             window.location.href = 'pay.html';
                         });
 

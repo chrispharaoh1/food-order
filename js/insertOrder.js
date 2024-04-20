@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('paynow').addEventListener('click', function() {
+    document.getElementById('paynow').addEventListener('submit', function(e) {
+        e.preventDefault();
         // Get local storage values
         var foodOption = localStorage.getItem('foodOption');
         var price = localStorage.getItem('price');
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         };
-        xhr.send(new URLSearchParams(new FormData(document.getElementById('paynow'))));
+        //xhr.send(new URLSearchParams(new FormData(document.getElementById('paynow'))));
+        xhr.send( JSON.stringify({ foodOption, price, qty}));
     });
 });

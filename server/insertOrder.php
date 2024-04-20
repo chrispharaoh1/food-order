@@ -3,8 +3,26 @@
 //file for inserting data into ther oder table
 session_start();
 
+//include database connection file
+$dsn = 'mysql:host=localhost;dbname=food_store';
+$username = 'root';
+$password = '';
+
+$db = new mysqli('localhost', $username, $password, 'food_store');
+
+// try {
+//   $db = new PDO($dsn, $username, $password);
+//   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// } catch (PDOException $e) {
+//   echo json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]);
+//   exit;
+// }
+
+
+$data = json_decode(file_get_contents('php://input'), true);
+
 // Check if the session variables are set
-if (isset($_SESSION['email']) && isset($_SESSION['name']) && isset($_SESSION['customer_id']) && isset($_SESSION['phone'])) {
+if (isset($_SESSION['email'])) {
     // Get the session values
     $email = $_SESSION['email'];
     $customerName = $_SESSION['name'];
@@ -12,20 +30,15 @@ if (isset($_SESSION['email']) && isset($_SESSION['name']) && isset($_SESSION['cu
     $phoneNumber = $_SESSION['phone'];
 
     // Get the local storage values
-    $orderedItem = $_POST['foodOption'];
-    $orderPrice = $_POST['price2'];
-    $orderQty = $_POST['qty2'];
+    $orderedItem = $data['foodOption'];
+    $orderPrice = $data['price'];
+    $orderQty = $data['qty'];
 
-    // Perform database insertion (Assuming you have a database connection)
-    // Make sure to sanitize your input to prevent SQL injection
-
-    // Assuming you have a database connection $conn
-    // Example SQL query (Make sure to adjust based on your table structure)
-    $sql = "INSERT INTO oders (email, customer_name, customer_id, phone_number, ordered_item, order_price, order_qty)
+    $sql = "INSERT INTO oder (email, customer_name, customer_id, phone_number, ordered_item, order_price, order_qty)
             VALUES ('$email', '$customerName', '$customerId', '$phoneNumber', '$orderedItem', '$orderPrice', '$orderQty')";
 
     // Execute the query
-    if ($conn->query($sql) === TRUE) {
+    if ($db->query($sql) === TRUE) {
         // Return success message
         echo json_encode(array("success" => true));
     } else {

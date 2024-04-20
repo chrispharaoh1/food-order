@@ -111,6 +111,14 @@
                                         <span class="c-green" id="price"></span>
                                     </p>
                                     <p class="mb-0">
+                                        <span class="fw-bold">Quantity:</span>
+                                        <span class="c-green" id="qty1"></span>
+                                    </p>
+                                    <p class="mb-0">
+                                        <span class="fw-bold">Total cost:</span>
+                                        <span class="c-green" id="total"></span>
+                                    </p>
+                                    <p class="mb-0">
                                         <span class="fw-bold">Product image</span>
                                     </p>
                                     <!-- Image will be displayed here -->
@@ -123,27 +131,27 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form__div">
-                                                    <input type="text" class="form-control" placeholder=" ">
+                                                    <input type="text" class="form-control" placeholder=" " required>
                                                     <label for="cardnumb" class="form__label">Card Number</label>
                                                 </div>
                                             </div>
 
                                             <div class="col-6">
                                                 <div class="form__div">
-                                                    <input type="text" class="form-control" placeholder=" ">
+                                                    <input type="text" class="form-control" placeholder=" " required>
                                                     <label for="mmy" class="form__label">MM / yy</label>
                                                 </div>
                                             </div>
 
                                             <div class="col-6">
                                                 <div class="form__div">
-                                                    <input type="password" class="form-control" placeholder=" ">
+                                                    <input type="password" class="form-control" placeholder=" " required>
                                                     <label for="cvv" class="form__label">cvv code</label>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form__div">
-                                                    <input type="text" class="form-control" placeholder=" ">
+                                                    <input type="text" class="form-control" placeholder=" " required>
                                                     <label for="card" class="form__label">name on the card</label>
                                                 </div>
                                             </div>
@@ -152,7 +160,7 @@
                                         <input type="hidden" id="price2" name="price2" value="">
                                         <input type="hidden" id="qty2" name="qty2" value="">
                                             <div class="col-12">
-                                                <button type="button" id="paybutton" class="btn btn-primary w-100">Submit</button>
+                                                <button type="submit" id="paybutton" class="btn btn-primary w-100">Submit</button>
                                             </div>
                                         </div>
                                      
@@ -194,10 +202,12 @@ document.addEventListener("DOMContentLoaded", function() {
   var Product = localStorage.getItem('foodOption');
   var image = localStorage.getItem('imageUrl');
   var qty = localStorage.getItem('qty');
-
+  var total = localStorage.getItem('total');
   //appending the values
   document.getElementById("price").append("$"+price);
   document.getElementById("product").append(""+Product);
+  document.getElementById("total").append(total);
+  document.getElementById("qty1").append( qty);
 
 
   //Removing base url to the image
