@@ -34,6 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       //Creating sessions for the user
       $_SESSION['email'] = $email;
       $_SESSION['name'] = $user['name'];
+      $_SESSION['customer_id'] = $user['customer_id'];
+      $_SESSION['name'] = $user['name'];
 
     } else {
       echo json_encode(['message' => 'Invalid email or password']);

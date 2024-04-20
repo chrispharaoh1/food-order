@@ -110,13 +110,17 @@
                                         <span class="fw-bold">Price:</span>
                                         <span class="c-green" id="price"></span>
                                     </p>
+                                    <p class="mb-0">
+                                        <span class="fw-bold">Product image</span>
+                                        <span class="c-green" id="price"></span>
+                                    </p>
                                     <!-- Image will be displayed here -->
                                     <div class="img" id="img">
 
                                     </div>
                                 </div>
                                 <div class="col-lg-7">
-                                    <form action="" class="form">
+                                    <form id="paynow" class="form">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form__div">
@@ -166,41 +170,23 @@ document.addEventListener("DOMContentLoaded", function() {
   var qty = localStorage.getItem('qty');
 
   //appending the values
-
   document.getElementById("price").append("$"+price);
   document.getElementById("product").append(""+Product);
 
-  // Function to stript image Url using php file
-  function stripUrL() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '../server/stripUrl.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                var customerCount = JSON.parse(xhr.responseText);
-                updateCustomerCount(customerCount);
-            } else {
-                console.error('Failed to fetch customer count');
-            }
-        }
-    };
-    xhr.send( JSON.stringify({ image}));
-}
 
+  //Removing base url to the image
+  let fullUrl = image;
+  let baseUrl = "http://localhost/food-order/customer/";
+  let strippedUrl = fullUrl.replace(new RegExp('^' + baseUrl), '');
 
+  //Creating new image
   var img = document.createElement("img");
- //Adding image source from the localstorage
- img.src = image.substring(fullURL.lastIndexOf("/") + 1);
- img.alt = Product;
- img.className = "col-md-4";
- //appending the image to the picture id to be displayed
- document.getElementById("img").append(img);
-
- var fullURL = "http://localhost/food-order/customer/img/background.PNG";
-
-
-console.log(getPath()); // Outputs: img/background.PNG
+  //Adding image source from the localstorage stripped Url
+    img.src = strippedUrl;
+    img.alt = Product;
+    img.className = "col-md-4";
+    //appending the image to the picture id to be displayed
+    document.getElementById("img").append(img);  
 
 });
 
