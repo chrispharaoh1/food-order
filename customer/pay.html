@@ -112,7 +112,6 @@
                                     </p>
                                     <p class="mb-0">
                                         <span class="fw-bold">Product image</span>
-                                        <span class="c-green" id="price"></span>
                                     </p>
                                     <!-- Image will be displayed here -->
                                     <div class="img" id="img">
@@ -148,14 +147,15 @@
                                                     <label for="card" class="form__label">name on the card</label>
                                                 </div>
                                             </div>
+                                               <!-- Hidden iputs to hold the localStorage values -->
+                                        <input type="hidden" id="foodOption" name="foodOption" value="">
+                                        <input type="hidden" id="price2" name="price2" value="">
+                                        <input type="hidden" id="qty2" name="qty2" value="">
                                             <div class="col-12">
-                                                <div class="btn btn-primary w-100">Sumbit</div>
+                                                <button type="button" id="paybutton" class="btn btn-primary w-100">Submit</button>
                                             </div>
                                         </div>
-                                        <!-- Hidden iputs to hold the localStorage values -->
-                                        <input type="hidden" id="foodOption" name="foodOption" value="">
-                                        <input type="hidden" id="price" name="price" value="">
-                                        <input type="hidden" id="qty2" name="qty2" value="">
+                                     
                                     </form>
                                 </div>
                             </div>
@@ -215,8 +215,6 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("img").append(img);  
 
 });
-
-
 
 </script>
 

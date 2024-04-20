@@ -13,8 +13,8 @@ if (isset($_SESSION['email']) && isset($_SESSION['name']) && isset($_SESSION['cu
 
     // Get the local storage values
     $orderedItem = $_POST['foodOption'];
-    $orderPrice = $_POST['price'];
-    $orderQty = $_POST['qty'];
+    $orderPrice = $_POST['price2'];
+    $orderQty = $_POST['qty2'];
 
     // Perform database insertion (Assuming you have a database connection)
     // Make sure to sanitize your input to prevent SQL injection

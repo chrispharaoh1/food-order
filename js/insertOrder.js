@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.btn-primary').addEventListener('click', function() {
+    document.getElementById('paynow').addEventListener('click', function() {
         // Get local storage values
         var foodOption = localStorage.getItem('foodOption');
         var price = localStorage.getItem('price');
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Set local storage values to hidden inputs
         document.getElementById('foodOption').value = foodOption;
-        document.getElementById('price').value = price;
+        document.getElementById('price2').value = price;
         document.getElementById('qty2').value = qty;
 
         // AJAX request
