@@ -104,19 +104,16 @@
                             <div class="row">
                                 <div class="col-lg-5 mb-lg-0 mb-3">
                                     <p class="h4 mb-0">Summary</p>
-                                    <p class="mb-0"><span class="fw-bold">Product:</span><span class="c-green">: Name of
-                                            product</span>
+                                    <p class="mb-0"><span class="fw-bold">Product:</span><span class="c-green" id="product"></span>
                                     </p>
                                     <p class="mb-0">
                                         <span class="fw-bold">Price:</span>
-                                        <span class="c-green">:$452.90</span>
+                                        <span class="c-green" id="price"></span>
                                     </p>
-                                    <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque
-                                        nihil neque
-                                        quisquam aut
-                                        repellendus, dicta vero? Animi dicta cupiditate, facilis provident quibusdam ab
-                                        quis,
-                                        iste harum ipsum hic, nemo qui!</p>
+                                    <!-- Image will be displayed here -->
+                                    <div class="img" id="img">
+
+                                    </div>
                                 </div>
                                 <div class="col-lg-7">
                                     <form action="" class="form">
@@ -160,9 +157,60 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script>
+//getting ordered values from localstorage
+document.addEventListener("DOMContentLoaded", function() {
+  var price = localStorage.getItem('price');
+  var Product = localStorage.getItem('foodOption');
+  var image = localStorage.getItem('imageUrl');
+  var qty = localStorage.getItem('qty');
+
+  //appending the values
+
+  document.getElementById("price").append("$"+price);
+  document.getElementById("product").append(""+Product);
+
+  // Function to stript image Url using php file
+  function stripUrL() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '../server/stripUrl.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var customerCount = JSON.parse(xhr.responseText);
+                updateCustomerCount(customerCount);
+            } else {
+                console.error('Failed to fetch customer count');
+            }
+        }
+    };
+    xhr.send( JSON.stringify({ image}));
+}
+
+
+  var img = document.createElement("img");
+ //Adding image source from the localstorage
+ img.src = image.substring(fullURL.lastIndexOf("/") + 1);
+ img.alt = Product;
+ img.className = "col-md-4";
+ //appending the image to the picture id to be displayed
+ document.getElementById("img").append(img);
+
+ var fullURL = "http://localhost/food-order/customer/img/background.PNG";
+
+
+console.log(getPath()); // Outputs: img/background.PNG
+
+});
+
+
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  <!-- JavaScript Libraries -->
