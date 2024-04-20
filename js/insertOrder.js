@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set local storage values to hidden inputs
         document.getElementById('foodOption').value = foodOption;
         document.getElementById('price').value = price;
-        document.getElementById('qty').value = qty;
+        document.getElementById('qty2').value = qty;
 
         // AJAX request
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'insertOrder.php', true);
+        xhr.open('POST', '../server/insertOrder.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
             if (xhr.status === 200) {

@@ -21,7 +21,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['name']) && isset($_SESSION['cu
 
     // Assuming you have a database connection $conn
     // Example SQL query (Make sure to adjust based on your table structure)
-    $sql = "INSERT INTO orders (email, customer_name, customer_id, phone_number, ordered_item, order_price, order_qty)
+    $sql = "INSERT INTO oders (email, customer_name, customer_id, phone_number, ordered_item, order_price, order_qty)
             VALUES ('$email', '$customerName', '$customerId', '$phoneNumber', '$orderedItem', '$orderPrice', '$orderQty')";
 
     // Execute the query
