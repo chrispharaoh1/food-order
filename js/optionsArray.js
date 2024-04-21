@@ -21,14 +21,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     menuOptionsHTML += '<div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">';
                     menuOptionsHTML += '<div class="bg-image hover-zoom ripple rounded ripple-surface">';
                         //image
-                        menuOptionsHTML += '<img src="../img/kate-aloo.jpeg" class="w-100">'+'</img>';
+                        var imgUrl = "img/"+option['image_data'];
+                        menuOptionsHTML += '<img src="' + imgUrl + '" class="w-100">';
                     menuOptionsHTML += '</div>';
                     menuOptionsHTML += '</div>';
 
                     //Div for main content
                     menuOptionsHTML += '<div class="col-md-6 col-lg-6 col-xl-6">';
                         //title
-                        menuOptionsHTML += '<h5>' + option['option_name'] + '</h5>';
+                        menuOptionsHTML += '<h5>' +option['category'] + ', ' + option['option_name'] + '</h5>';
 
                         //star rating
                         menuOptionsHTML += '<div class="d-flex flex-row">';
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                                  //button for buy and login
                                  menuOptionsHTML += '<div class="d-flex flex-column mt-4">';
-                                    menuOptionsHTML += '<button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-sm" type="button" onclick="redirectToPay(\'' + option['price'] + '\', \'' + option['option_name'] + '\')">Buy</button>';
+                                    menuOptionsHTML += '<button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-sm" type="button" onclick="redirectToPay(\'' + option['price'] + '\', \'' + option['option_name'] + '\' ,\'' + option['image_data'] + '\')">Buy</button>';
                                  menuOptionsHTML += '</div>';
 
                         menuOptionsHTML += '</div>';
@@ -84,13 +85,13 @@ document.addEventListener('DOMContentLoaded', function() {
  
 });
 
-function redirectToPay(price, option_name) {
+function redirectToPay(price, option_name, imgUrl) {
     var url = 'pay.html?price=' + encodeURIComponent(price) + '&ingredients=' + encodeURIComponent(option_name);
     //setting the data to local storage to be retrieved at pay page
     localStorage.setItem("price", price);
     localStorage.setItem("foodOption", option_name);
-    localStorage.setItem("qty", "Smith");
-    localStorage.setItem("total", "Smith");
-    localStorage.setItem("imageUrl", "Smith");
+    localStorage.setItem("qty", "1");
+    localStorage.setItem("total", price);
+    localStorage.setItem("imageUrl", "img/"+imgUrl);
     window.location.href = url;
 }
