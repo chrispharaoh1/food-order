@@ -5,14 +5,7 @@
     header("Allow: GET, POST");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers,  Authorization, X-Request-With");
 
-    $localhost = 'localhost';
-    $username = 'root';
-    $password = '';
-    $database = 'food_store';
-    
-    $db = new mysqli($localhost, $username, $password, $database);
-
-    global $db;
+    include("../config/config.php"); 
 
     $requestMethod = $_SERVER['REQUEST_METHOD'];
     if ( $requestMethod == 'GET') {
@@ -30,14 +23,7 @@
 
     //get function
     function orderDetails(){
-
-
-        $localhost = 'localhost';
-        $username = 'root';
-        $password = '';
-        $database = 'food_store';
-        
-        $db = new mysqli($localhost, $username, $password, $database);
+        include("../config/config.php"); 
 
         $order = $_GET['order'];
 
