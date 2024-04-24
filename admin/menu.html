@@ -226,7 +226,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="addItemCategory" method="post">
+                <form id="addItemCategory" action="upload.php" method="post">
                     <div class="form-group">
                       <label for="itemDescription">Category</label>
                       <input type="text" class="form-control" id="itemDescription" placeholder="Add category name e.g., Sandwich" name="itemDescription" required>
@@ -254,12 +254,12 @@
               </button>
           </div>
           <div class="modal-body">
-              <form id="addItemImage" action="../server/upload.php" method="post" enctype="multipart/form-data">
+              <form  method="post" action="upload.php" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="itemDescription">Images</label>
-                    <input type="file" class="form-control" id="itemDescription" placeholder="Add all images you have used to the server"name="files[]" multiple>
+                    <input type="file" class="form-control" id="itemDescription" name="file[]" placeholder="Add all images you have used to the server">
                   </div>
-                  <button type="submit"  class="btn btn-primary">Save</button>
+                  <input type="submit"  class="btn btn-primary"></input>
                 </form>
                   <!-- Messages will be shown here -->
                   <br>
