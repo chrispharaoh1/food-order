@@ -9,9 +9,9 @@ $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 // Database connection parameters
 $servername = "localhost";
-$username = "id22073938_food";
-$password = "McCarthy1294@";
-$dbname = "id22073938_food_store";
+$username = "root";
+$password = "";
+$dbname = "food_store";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
