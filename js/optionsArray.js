@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         //Price and shipping
                         menuOptionsHTML += '<div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">';
                             menuOptionsHTML += '<div class="d-flex flex-row align-items-center mb-1">';
-                                menuOptionsHTML += '<h4 class="mb-1 me-1">' +'Price: $'  + option['price'] + '</4>';
+                                menuOptionsHTML += '<h4 class="mb-1 me-1">' +'Price: €'  + option['price'] + '</4>';
                             menuOptionsHTML += '</div>';
                                  menuOptionsHTML += '<h6 class="text-success">' +'Free shipping' +'</h5>';
 
