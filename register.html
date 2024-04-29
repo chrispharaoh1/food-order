@@ -225,7 +225,7 @@
           this.setState({ emailValid: isValid });
           break;
         case "password":
-          const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/; //this rejex validate the password to have atleast upper and lower case, a number, and atleast 8 chrater long
+          const passwordRegex = /^[A-Za-z0-9 ]{9,}$/; ///^(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/; //this rejex validate the password to have atleast upper and lower case, a number, and atleast 8 chrater long
           isValid = passwordRegex.test(value);
           this.setState({ passwordValid: isValid });
           break;
