@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         //Contents description
                         menuOptionsHTML += '<div class="mt-1 mb-0 text-muted small">';
-                            menuOptionsHTML += '<label>' +'IIngridients : ' + option['ingredients']+ '</label>';
+                            menuOptionsHTML += '<label>' +'Ingridients : ' + option['ingredients']+ '</label>';
                         menuOptionsHTML += '</div>';
                         menuOptionsHTML += '</div>';
                         
